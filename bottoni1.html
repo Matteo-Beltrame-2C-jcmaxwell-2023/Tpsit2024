@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottoni con Alert</title>
+    <style>
+        .bottone1 {
+            background-color: #00ff08; /* Verde */
+            color: white;
+        }
+        .bottone2 {
+            background-color: #f11000; /* Rosso */
+            color: white;
+        }
+        .bottone3 {
+            background-color: #00bfff; /* Blu */
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+    </style>
+    <script>
+        function mostraAlert(frase) {
+            alert(frase);
+        }
+    </script>
+</head>
+<body>
+    <h1>Clicca i bottoni e vedrai</h1>
+    <button class="bottone1" onclick="mostraAlert('Ciao !')">Bottone 1</button>
+    <button class="bottone2" onclick="mostraAlert('Hello!')">Bottone 2</button>
+    <button class="bottone3" onclick="mostraAlert('Hallo!')">Bottone 3</button>
+</body>
+</html>
