@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aforismi di Scienziati</title>
+    <style>
+        .aforisma {
+        background-color: bisque;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #000000c2;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aforisma">
+        <p id="aforisma1">"Gli scienziati sognano di fare grandi cose. Gli ingegneri le realizzano."  James Michener</p>
+        <button onclick="nascondi('aforisma1')">Nascondi Testo</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma2">"La scienza è l'arte di sapere." - Galileo Galilei</p>
+        <button onclick="nascondi('aforisma2')">Nascondi Testo</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma3">"Tutto ciò che possiamo sapere è che non sappiamo nulla." - Socrate</p>
+        <button onclick="nascondi('aforisma3')">Nascondi Testo</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma4">"La vita è una questione di scelte." - Richard Feynman</p>
+        <button onclick="nascondi('aforisma4')">Nascondi Testo</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma5">"La scienza è la miglior risposta che abbiamo." - Albert Einstein</p>
+        <button onclick="nascondi('aforisma5')">Nascondi Testo</button>
+    </div>
+
+    <script>
+        function nascondi(id) {
+            const testo = document.getElementById(id);
+            testo.style.display = "none"; 
+        }
+    </script>
+
+</body>
+</html>
