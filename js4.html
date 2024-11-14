@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Dislivello Trekking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Calcolo Dislivello</h1>
+
+    <div class="input-group">
+        <label for="start">Punto di partenza (metri):</label>
+        <input type="number" id="start" placeholder="E.g., 1500">
+    </div>
+
+    <div class="input-group">
+        <label for="pause">Punto di pausa (metri):</label>
+        <input type="number" id="pause" placeholder="E.g., 2000">
+    </div>
+
+    <div class="input-group">
+        <label for="end">Punto di arrivo (metri):</label>
+        <input type="number" id="end" placeholder="E.g., 1800">
+    </div>
+
+    <button onclick="calcolaDislivello()">Calcola Dislivello</button>
+
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    function calcolaDislivello() {
+        const start = parseFloat(document.getElementById('start').value);
+        const pause = parseFloat(document.getElementById('pause').value);
+        const end = parseFloat(document.getElementById('end').value);
+        
+       
+        if (isNaN(start) || isNaN(pause) || isNaN(end)) {
+            document.getElementById('result').innerHTML = "Per favore, inserisci valori validi per tutti i campi.";
+            return;
+        }
+
+      
+        const dislivello = Math.abs(end - start) + Math.abs(pause - start) + Math.abs(end - pause);
+        
+  
+        document.getElementById('result').innerHTML = `Il dislivello totale è: ${dislivello} metri.`;
+    }
+</script>
+
+</body>
+</html>
