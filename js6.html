@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown con Immagine</title>
+    <style>
+        /* Stile del contatore */
+        #counter {
+            font-size: 3rem;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Stile della div nascosta */
+        #image-container {
+            display: none; /* Nasconde inizialmente il contenitore */
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="counter">3</div>
+    <div id="image-container">
+        <img src="bellofigo.jpeg" alt="Immagine di esempio">
+    </div>
+
+    <script>
+        // Inizializza il valore del contatore
+        let countdown = 3;
+        const counterElement = document.getElementById("counter");
+        const imageContainer = document.getElementById("image-container");
+
+        // Funzione per aggiornare il contatore
+        const updateCounter = () => {
+            if (countdown > 0) {
+                counterElement.textContent = countdown;
+                countdown--;
+            } else {
+                // Nasconde il contatore e mostra l'immagine
+                counterElement.style.display = "none";
+                imageContainer.style.display = "block";
+                clearInterval(intervalId);
+            }
+        };
+
+        // Esegue il conto alla rovescia ogni secondo
+        const intervalId = setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
