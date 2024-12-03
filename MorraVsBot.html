@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morra Cinese</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #scelte img {
+            width: 100px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #risultato {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        #punteggio {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Morra Cinese</h1>
+    <div id="scelte">
+        <img src="sasso.png" alt="Sasso" onclick="gioca(0)">
+        <img src="carta.png" alt="Carta" onclick="gioca(1)">
+        <img src="forbice.png" alt="Forbice" onclick="gioca(2)">
+    </div>
+    <div id="risultato"></div>
+    <div id="punteggio"></div>
+
+    <script>
+        // Array delle scelte
+        const morra = ["Sasso", "Carta", "Forbice"];
+        let punteggioGiocatore = 0;
+        let punteggioBot = 0;
+
+        // Funzione principale del gioco
+        function gioca(sceltaGiocatore) {
+            // Scelta casuale del bot
+            const sceltaBot = Math.floor(Math.random() * 3);
+
+            // Determinazione del risultato
+            let risultato = "";
+            if (sceltaGiocatore === sceltaBot) {
+                risultato = "Pareggio!";
+            } else if (
+                (sceltaGiocatore === 0 && sceltaBot === 2) || // Sasso batte Forbice
+                (sceltaGiocatore === 1 && sceltaBot === 0) || // Carta batte Sasso
+                (sceltaGiocatore === 2 && sceltaBot === 1)    // Forbice batte Carta
+            ) {
+                risultato = "Hai vinto!";
+                punteggioGiocatore++;
+            } else {
+                risultato = "Hai perso!";
+                punteggioBot++;
+            }
+
+            // Mostra il risultato e aggiorna il punteggio
+            document.getElementById("risultato").innerHTML = `
+                Hai scelto: ${morra[sceltaGiocatore]} <br>
+                Il bot ha scelto: ${morra[sceltaBot]} <br>
+                ${risultato}
+            `;
+
+            aggiornaPunteggio();
+        }
+
+        // Funzione per aggiornare il punteggio
+        function aggiornaPunteggio() {
+            document.getElementById("punteggio").innerHTML = `
+                Punteggio Giocatore: ${punteggioGiocatore} <br>
+                Punteggio Bot: ${punteggioBot}
+            `;
+        }
+    </script>
+</body>
+</html>
