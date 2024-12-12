@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizzatore e Media</title>
+    <style>
+        #container {
+            width: 500px;
+            height: 200px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Estrazione Numeri Casuali</h1>
+
+    <div id="container">
+        <p><strong>Numeri estratti:</strong> <span id="numbers"></span></p>
+        <p><strong>Media dei numeri:</strong> <span id="average"></span></p>
+    </div>
+
+    <script>
+      
+        let numeri = [];
+        
+       
+        function estraiNumeroCasuale() {
+            let numero = Math.floor(Math.random() * 90) + 1; 
+            numeri.push(numero); 
+            aggiornaDisplay(); 
+        }
+
+       
+        function calcolaMedia() {
+            if (numeri.length === 0) return 0;
+            let somma = numeri.reduce((acc, curr) => acc + curr, 0); 
+            return somma / numeri.length; 
+        }
+
+        
+        function aggiornaDisplay() {
+            
+            document.getElementById("numbers").textContent = numeri.join(", ");
+            
+            document.getElementById("average").textContent = calcolaMedia().toFixed(2); 
+        }
+
+        
+        setInterval(estraiNumeroCasuale, 3000);
+    </script>
+
+</body>
+</html>
