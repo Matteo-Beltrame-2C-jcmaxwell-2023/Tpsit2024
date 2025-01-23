@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lezione Bootstrap</title>
+<!-- CSS di Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .col {
+    border: 1px solid black; /* Aggiunge un bordo nero alle colonne */
+    text-align: center; /* Centra il testo */
+    padding: 10px; /* Aggiunge un po' di spazio interno */
+  }
+</style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Brand</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Container con colonne con bordi neri -->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">Colonna 1</div>
+    <div class="col">Colonna 2</div>
+    <div class="col">Colonna 3</div>
+  </div>
+</div>
+
+<!-- Container con colonne responsive e bordi neri -->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">Colonna con bordi neri 1</div>
+    <div class="col-md-6">Colonna con bordi neri 2</div>
+  </div>
+</div>
+
+<!-- Bottoni -->
+<div class="container mt-4">
+  <button class="btn btn-primary">Primario</button>
+  <button class="btn btn-secondary">Secondario</button>
+</div>
+
+<!-- Card -->
+<div class="container mt-4">
+  <div class="card" style="width: 18rem;">
+    <img src="https://www.google.com/imgres?q=big%20x%20the%20plug&imgurl=https%3A%2F%2Ftownsquare.media%2Fsite%2F812%2Ffiles%2F2024%2F06%2Fattachment-bigxthaplug-2024-xxl-freshman-photo.jpg&imgrefurl=https%3A%2F%2Fwww.xxlmag.com%2Fbigxthaplug%2F&docid=OpTcPkPkDbip9M&tbnid=3QHixd9Hhc1kTM&vet=12ahUKEwjtwI_R3IuLAxUm9LsIHfjCJhIQM3oECC0QAA..i&w=2500&h=3748&hcb=2&ved=2ahUKEwjtwI_R3IuLAxUm9LsIHfjCJhIQM3oECC0QAA" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Titolo della Card</h5>
+      <p class="card-text">Testo della card.</p>
+      <a href="#" class="btn btn-primary">Vai</a>
+    </div>
+  </div>
+</div>
+
+<!-- Script Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
