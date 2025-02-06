@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottoni e Cronometro</title>
+    <style>
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Premere bottone 1 e 3 per vedere l'ora e il bottone 2 e 4 per vedere il tempo impiegato tra un click e l'altro</h1>
+
+    <button onclick="DataOra()">Bottone 1</button>
+    <button onclick="DifferenzaTempo()">Bottone 2</button>
+    <button onclick="DataOra()">Bottone 3</button>
+    <button onclick="DifferenzaTempo()">Bottone 4</button>
+
+    <p id="dataOra"></p>
+    <p id="tempiClick"></p>
+
+    <script>
+        let firstClickTime = null;
+        let timeDifferences = [];
+
+        function DataOra() {
+            const now = new Date();
+            const dataOra = now.toLocaleString();
+            document.getElementById("dataOra").textContent = `Data e ora: ${dataOra}`;
+        }
+
+        function DifferenzaTempo() {
+            const now = new Date();
+            if (firstClickTime === null) {
+                firstClickTime = now;
+                document.getElementById("tempiClick").textContent = 'Tempi: (prima volta)';
+            } else {
+                const diffMs = now - firstClickTime;
+                const seconds = (diffMs / 1000).toFixed(3);
+                timeDifferences.push(seconds);
+                document.getElementById("tempiClick").textContent = `Tempi dei click successivi: ${timeDifferences.join(', ')} secondi`;
+            }
+        }
+
+        document.getElementById("btn1").addEventListener("click", function() {
+            DataOra();
+            DifferenzaTempo();
+        });
+
+        document.getElementById("btn2").addEventListener("click", function() {
+            DataOra();
+            DifferenzaTempo();
+        })
+ </script>
+       
+ </body>     
+ </html>
