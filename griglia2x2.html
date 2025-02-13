@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Griglia 2x2</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 100px);
+            grid-template-rows: repeat(2, 100px);
+            gap: 5px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+        }
+        .cell1 { background-color: blue; }
+        .cell2 { background-color: yellow;}
+        .cell3 { background-color: green; }
+        .cell4 { background-color: red; }
+    </style>
+</head>
+<body>
+    <div class="grid-2x2">
+        <div class="cell cell1"></div>
+        <div class="cell cell2"></div>
+        <div class="cell cell3"></div>
+        <div class="cell cell4"></div>
+    </div>
+</body>
+</html>
