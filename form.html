@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Message</title>
+</head>
+<body>
+    <h2>Post a Message</h2>
+    <form id="postForm">
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" name="nickname" required><br><br>
+        
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="30" required></textarea><br><br>
+        
+        <label><input type="radio" name="visibility" value="private" checked> Private</label><br>
+        <label><input type="radio" name="visibility" value="public"> Public</label><br><br>
+        
+        <button type="submit">Send</button>
+    </form>
+
+    <h2>Dati ricevuti:</h2>
+    <p id="output"></p>
+
+    <script>
+        document.getElementById("postForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const nickname = document.getElementById("nickname").value || "Nickname non fornito";
+            const message = document.getElementById("message").value || "Messaggio non fornito";
+            const visibility = document.querySelector('input[name="visibility"]:checked').value || "Visibilità non fornita";
+            
+            document.getElementById("output").textContent = `Nickname: ${nickname}\nMessaggio: ${message}\nVisibilità: ${visibility}`;
+        });
+    </script>
+</body>
+</html>
