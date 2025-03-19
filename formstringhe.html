@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form di Input</title>
+  <style>
+    #output {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Form di Input</h2>
+  <form id="inputForm">
+    <label for="stringA">Stringa A:</label>
+    <input type="text" id="stringA" name="stringA"><br><br>
+
+    <label for="stringB">Stringa B:</label>
+    <input type="text" id="stringB" name="stringB"><br><br>
+
+    <button type="button" onclick="processStrings()">Calcola</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script>
+  
+    function calculateLength(str) {
+      return str.length;
+    }
+
+ 
+    function reverseString(str) {
+      return str.split('').reverse().join('');
+    }
+
+  
+    function joinStrings(str1, str2) {
+      return str1 + str2;
+    }
+
+    
+    function checkStringLength(str1, str2) {
+      const lengthSum = str1.length + str2.length;
+      const message = lengthSum + " caratteri totali";
+
+      let bTooLongMessage = "";
+      if (str2.length > 20) {
+        bTooLongMessage = "<br><strong>La stringa B è troppo lunga!</strong>";
+      }
+
+      return message + bTooLongMessage;
+    }
+
+    
+    function processStrings() {
+      const strA = document.getElementById('stringA').value;
+      const strB = document.getElementById('stringB').value;
+
+      const lengthA = calculateLength(strA);
+      const lengthB = calculateLength(strB);
+      const reversedA = reverseString(strA);
+      const reversedB = reverseString(strB);
+      const joinedStrings = joinStrings(strA, strB);
+      const lengthInfo = checkStringLength(strA, strB);
+
+      const output = document.getElementById('output');
+      output.innerHTML = `
+        <p><strong>Lunghezza Stringa A:</strong> ${lengthA}</p>
+        <p><strong>Lunghezza Stringa B:</strong> ${lengthB}</p>
+        <p><strong>Stringa A al contrario:</strong> ${reversedA}</p>
+        <p><strong>Stringa B al contrario:</strong> ${reversedB}</p>
+        <p><strong>Unione delle due stringhe:</strong> ${joinedStrings}</p>
+        <p><strong>Somma delle lunghezze:</strong> ${lengthInfo}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
