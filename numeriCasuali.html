@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Numeri Casuali & Chart.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Numero Casuale:</h2>
+    <p id="mioOut1"></p>
+
+    <h2>Rapporti tra numeri consecutivi:</h2>
+    <p id="arrayOut"></p>
+
+    <h2>Grafico numeri casuali:</h2>
+    <canvas id="grafico" width="600" height="300"></canvas>
+
+    <script>
+        const mioArray = [];       // Array numeri casuali
+        const ArrayRapp = [];      // Array rapporti n = casuale(i) / casuale(i-1)
+        const Distanze = [];       // Distanze da 0.5
+        let chart = null;          // Oggetto grafico Chart.js
+
+        // Funzione per generare numeri e aggiornare tutto
+        function genera() {
+            const casuale = Math.random();             // Numero casuale tra 0 e 1
+            const distanza = Math.abs(casuale - 0.5);  // Distanza da metà intervallo [0, 1]
+
+            // Mostra il numero generato
+            document.getElementById("mioOut1").innerHTML = casuale.toFixed(4);
+            
+            // Aggiungi agli array
+            mioArray.push(casuale);
+            Distanze.push(distanza);
+
+            // Calcola rapporto con numero precedente
+            const len = mioArray.length;
+            if (len > 1) {
+                const n = mioArray[len - 1] / mioArray[len - 2];
+                ArrayRapp.push(n);
+                document.getElementById("arrayOut").innerHTML = ArrayRapp.map(x => x.toFixed(2)).join(", ");
+            }
+
+            // Ogni 50 numeri: calcola media e aggiorna grafico
+            if (len % 50 === 0) {
+                calcolaMediaCasuali();
+                aggiornaGrafico();
+            }
+        }
+
+        // Funzione per calcolare la media degli ultimi 50 numeri
+        function calcolaMediaCasuali() {
+            const ultimi50 = mioArray.slice(-50);
+            const somma = ultimi50.reduce((acc, val) => acc + val, 0);
+            const media = somma / 50;
+            console.log("Media ultimi 50:", media.toFixed(4));
+        }
+
+        // Crea o aggiorna il grafico con Chart.js
+        function aggiornaGrafico() {
+            const labels = mioArray.map((_, i) => i + 1); // Etichette: 1, 2, 3, ...
+            const dati = mioArray;
+
+            const ctx = document.getElementById('grafico').getContext('2d');
+
+            if (chart) {
+                // Se il grafico esiste, aggiorna i dati
+                chart.data.labels = labels;
+                chart.data.datasets[0].data = dati;
+                chart.update();
+            } else {
+                // Altrimenti, crea un nuovo grafico
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Numeri casuali',
+                            data: dati,
+                            borderColor: 'blue',
+                            backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        animation: false,
+                        scales: {
+                            y: {
+                                suggestedMin: 0,
+                                suggestedMax: 1
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Avvia la generazione ogni 500ms
+        setInterval(genera, 500);
+    </script>
+</body>
+</html>
