@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gioco Tempi di Reazione json</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      margin: 20px auto;
+      display: none;
+      cursor: pointer;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gioco Tempi di Reazione</h1>
+  <p>Clicca il box rosso appena lo vedi!</p>
+
+  <div id="box"></div>
+
+  <button onclick="startGame()">Inizia</button>
+  <button onclick="downloadResults()">Scarica Risultati JSON</button>
+
+  <script>
+    let startTime, endTime;
+    const results = [];
+
+    function startGame() {
+      document.getElementById("box").style.display = "none";
+      const delay = Math.random() * 3000 + 1000; // tra 1 e 4 secondi
+
+      setTimeout(() => {
+        document.getElementById("box").style.display = "block";
+        startTime = new Date().getTime();
+      }, delay);
+    }
+
+    document.getElementById("box").addEventListener("click", () => {
+      endTime = new Date().getTime();
+      const reactionTime = endTime - startTime;
+      alert("Tempo di reazione: " + reactionTime + " ms");
+
+      results.push({
+        timestamp: new Date().toISOString(),
+        reactionTime: reactionTime
+      });
+
+      document.getElementById("box").style.display = "none";
+    });
+
+    function downloadResults() {
+      const json = JSON.stringify(results, null, 2);
+      const blob = new Blob([json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "risultati_tempi.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+
+</body>
+</html>
